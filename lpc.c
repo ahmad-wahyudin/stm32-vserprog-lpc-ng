@@ -27,9 +27,18 @@ void lpc_init() {
 	// LCLK#
 	gpio_set_mode(BOARD_PORT_LPC_LCLK, GPIO_OUTPUT_MODE, GPIO_CNF_OUTPUT_PUSHPULL, BOARD_PIN_LCLK);
 
+	// NEW: run LCLK continuously for >100us BEFORE dropping RST# low
+    for (int i = 0; i < 2000; i++) {   // adjust count for your actual toggle rate
+        clock_low();
+        clock_high();
+    }
+	
 	gpio_clear(BOARD_PORT_LPC_RST, BOARD_PIN_RST);
 	msleep(1);
 	gpio_set(BOARD_PORT_LPC_RST, BOARD_PIN_RST);
+
+	// NEW: satisfy T_RST — RST# High to LFRAME# low, min 1us — before any bus cycle
+    for (volatile int i = 0; i < 200; i++) asm volatile("nop");
 }
 
 ////////nibble interface ///////////////////////
