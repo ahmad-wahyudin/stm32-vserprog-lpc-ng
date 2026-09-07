@@ -22,7 +22,6 @@ On Debian, simply do the following:
 
    ```bash
    git clone https://github.com/wosk/stm32-vserprog-lpc.git
-   python3 libopencm3/scripts/genlink.py libopencm3/ld/devices.data STM32F103X8 DEFS > libopencm3/lib/stm32/f1/stm32f103x8.ld 
    make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly
    ```
 4. Program.
