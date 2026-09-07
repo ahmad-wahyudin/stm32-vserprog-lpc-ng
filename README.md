@@ -22,7 +22,7 @@ On Debian, simply do the following:
 
    ```bash
    git clone https://github.com/wosk/stm32-vserprog-lpc.git
-   make BOARD=stm32f103-ugly
+   make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly
    ```
 4. Program.
 
