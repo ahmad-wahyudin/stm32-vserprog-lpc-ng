@@ -22,6 +22,7 @@ On Debian, simply do the following:
 
    ```bash
    git clone https://github.com/wosk/stm32-vserprog-lpc.git
+   python3 libopencm3/scripts/genlink.py libopencm3/ld/devices.data STM32F103X8 DEFS > libopencm3/lib/stm32/f1/stm32f103x8.ld 
    make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly
    ```
 4. Program.
@@ -29,7 +30,7 @@ On Debian, simply do the following:
 Program via USB-UART adapter need pulled up _BOOT0_ pin and pulled low _BOOT1_ pin (See section 3.4 [`reference manual STM32F1xxxx `](http://www.st.com/resource/en/reference_manual/CD00171190.pdf)).
 
    ```bash
-   make BOARD=stm32f103-ugly flash
+   make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly flash
    ```
 Do not forget to pull low _BOOT0_ pin after flashing for run firmware.
 
