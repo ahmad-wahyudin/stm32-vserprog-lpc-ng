@@ -26,7 +26,7 @@ On Fedora, simply do the following:
   Simply type (change the board name accordingly, for details see the header of the `Makefile` or just type `make`):
 
    ```bash
-   git clone https://github.com/wosk/stm32-vserprog-lpc.git
+   git clone https://github.com/ahmad-wahyudin/stm32-vserprog-lpc-ng.git
    make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly
    ```
 4. Program.
