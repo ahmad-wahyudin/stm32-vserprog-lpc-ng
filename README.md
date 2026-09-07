@@ -16,6 +16,11 @@ On Debian, simply do the following:
    $ apt-get install stm32flash gcc-arm-none-eabi
    ```
 
+On Fedora, simply do the following:
+```bash
+   $ dnf install stlink openocd arm-none-eabi-gcc arm-none-eabi-newlib
+   ```
+
 3. Clone and compile.
 
   Simply type (change the board name accordingly, for details see the header of the `Makefile` or just type `make`):
