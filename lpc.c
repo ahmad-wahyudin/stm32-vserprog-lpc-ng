@@ -9,6 +9,16 @@
 
 #define GPIO_OUTPUT_MODE GPIO_MODE_OUTPUT_50_MHZ
 
+////////nibble interface ///////////////////////
+
+#define clock_low() gpio_clear(BOARD_PORT_LPC_LCLK, BOARD_PIN_LCLK)
+#define clock_high() gpio_set(BOARD_PORT_LPC_LCLK, BOARD_PIN_LCLK)
+
+#define lframe_low() gpio_clear(BOARD_PORT_LPC_LFRAME, BOARD_PIN_LFRAME)
+#define lframe_high() gpio_set(BOARD_PORT_LPC_LFRAME, BOARD_PIN_LFRAME)
+
+#define delay() asm volatile("nop")
+
 void lpc_init() {
 
 	rcc_periph_clock_enable(BOARD_RCC_LPC_LAD_PINS);
@@ -40,17 +50,6 @@ void lpc_init() {
 	// NEW: satisfy T_RST — RST# High to LFRAME# low, min 1us — before any bus cycle
     for (volatile int i = 0; i < 200; i++) asm volatile("nop");
 }
-
-////////nibble interface ///////////////////////
-
-#define clock_low() gpio_clear(BOARD_PORT_LPC_LCLK, BOARD_PIN_LCLK)
-#define clock_high() gpio_set(BOARD_PORT_LPC_LCLK, BOARD_PIN_LCLK)
-
-#define lframe_low() gpio_clear(BOARD_PORT_LPC_LFRAME, BOARD_PIN_LFRAME)
-#define lframe_high() gpio_set(BOARD_PORT_LPC_LFRAME, BOARD_PIN_LFRAME)
-
-#define delay() asm volatile("nop")
-
 
 void clock_cycle(void) {
 	clock_low();
