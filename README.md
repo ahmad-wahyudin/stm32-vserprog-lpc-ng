@@ -16,20 +16,25 @@ On Debian, simply do the following:
    $ apt-get install stm32flash gcc-arm-none-eabi
    ```
 
+On Fedora, simply do the following:
+```bash
+   $ dnf install stlink openocd arm-none-eabi-gcc arm-none-eabi-newlib
+   ```
+
 3. Clone and compile.
 
   Simply type (change the board name accordingly, for details see the header of the `Makefile` or just type `make`):
 
    ```bash
-   git clone https://github.com/wosk/stm32-vserprog-lpc.git
-   make BOARD=stm32f103-ugly
+   git clone https://github.com/ahmad-wahyudin/stm32-vserprog-lpc-ng.git
+   make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly
    ```
 4. Program.
 
 Program via USB-UART adapter need pulled up _BOOT0_ pin and pulled low _BOOT1_ pin (See section 3.4 [`reference manual STM32F1xxxx `](http://www.st.com/resource/en/reference_manual/CD00171190.pdf)).
 
    ```bash
-   make BOARD=stm32f103-ugly flash
+   make PREFIX="arm-none-eabi-" BOARD=stm32f103-ugly flash
    ```
 Do not forget to pull low _BOOT0_ pin after flashing for run firmware.
 
